@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can add new items - 2 1`] = `
+Array [
+  Object {
+    "op": "add",
+    "path": "/items/0",
+    "value": Object {
+      "authors": "Astrid Lindgren",
+      "price": 4.25,
+      "title": "Pika Nogavička",
+    },
+  },
+]
+`;
+
+exports[`can add new items - 2 2`] = `
+Array [
+  Object {
+    "op": "add",
+    "path": "/items/0",
+    "value": Object {
+      "authors": "Astrid Lindgren",
+      "price": 4.25,
+      "title": "Pika Nogavička",
+    },
+  },
+  Object {
+    "op": "replace",
+    "path": "/items/0/title",
+    "value": "Emil i Löneberga",
+  },
+]
+`;
+
+exports[`can add new items 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "authors": "Astrid Lindgren",
+      "price": 4.25,
+      "title": "Pippi!",
+    },
+  ],
+}
+`;
+
+exports[`can add new items 2`] = `
+Array [
+  Object {
+    "items": Array [
+      Object {
+        "authors": "Astrid Lindgren",
+        "price": 4.25,
+        "title": "Pika Nogavička",
+      },
+    ],
+  },
+  Object {
+    "items": Array [
+      Object {
+        "authors": "Astrid Lindgren",
+        "price": 4.25,
+        "title": "Pippi!",
+      },
+    ],
+  },
+]
+`;

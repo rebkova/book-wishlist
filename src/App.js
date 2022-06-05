@@ -3,7 +3,7 @@ import React from 'react'
 export const App = () => {
   return (
     <div>
-      Find me in src/app.js!
+      "Soon there will be a wishlist on here ..."
     </div>
   )
 }

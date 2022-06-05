@@ -1,4 +1,4 @@
-import { type } from "mobx-state-tree";
+import { getSnapshot, onSnapshot, onPatch } from "mobx-state-tree";
 import { WishList, WishListItem } from "./WishList";
 
 it('can create an instance of a model', () => {
@@ -30,6 +30,11 @@ it('can create a wishlist', () => {
 
 it('can add new items', () => {
   const list = WishList.create()
+  const states = []
+  onSnapshot(list, snapshot => {
+    states.push(snapshot)
+  })
+
   list.add(WishListItem.create({
     title: "Pika Nogavička",
     authors: "Astrid Lindgren",
@@ -40,4 +45,30 @@ it('can add new items', () => {
   expect(list.items[0].title).toBe('Pika Nogavička')
   list.items[0].changeTitle('Pippi!')
   expect(list.items[0].title).toBe('Pippi!')
+
+  // instead of writing tests for every property, we compare
+  // the whole model to itself
+  expect(getSnapshot(list)).toMatchSnapshot()
+  expect(states).toMatchSnapshot()
+})
+
+it('can add new items - 2', () => {
+  const list = WishList.create()
+  const patches = []
+  onPatch(list, patch => {
+    patches.push(patch)
+  })
+
+  list.add(WishListItem.create({
+    title: "Pika Nogavička",
+    authors: "Astrid Lindgren",
+    price: 4.25,
+  }))
+
+  list.items[0].changeTitle('Emil i Löneberga');
+  expect(list.items[0].title).toBe('Emil i Löneberga');
+
+  // expect(getSnapshot(list)).toMatchSnapshot();
+
+  expect(onPatch(patches)).toMatchSnapshot();
 })
